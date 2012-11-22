@@ -1,0 +1,267 @@
+
+<DATABASE-SCHEMA>
+  <TABLE NAME="s" SOURCE="Student" />
+  <TABLE NAME="sy" SOURCE="StudentYear">
+    <DEPENDENCY TABLE="s" CLAUSE="sy.SSN=s.SSN" />
+  </TABLE>
+  <TABLE NAME="p" SOURCE="Person">
+    <DEPENDENCY TABLE="s" CLAUSE="p.PersonID=s.PersonID" />
+  </TABLE>
+  <TABLE NAME="scy" SOURCE="SchoolYear">
+    <DEPENDENCY TABLE="sy" CLAUSE="scy.SchoolYearID=sy.SchoolYearID" />
+  </TABLE>
+  <TABLE NAME="st" SOURCE="Status">
+    <DEPENDENCY TABLE="sy" CLAUSE="st.StatusID=sy.StatusID" />
+  </TABLE>
+  <TABLE NAME="el" SOURCE="Eligibility">
+    <DEPENDENCY TABLE="sy" CLAUSE="el.EligibilityID=sy.EligibilityID" />
+  </TABLE>
+  <TABLE NAME="ge" SOURCE="Gender">
+    <DEPENDENCY TABLE="sy" CLAUSE="ge.GenderID=sy.GenderID" />
+  </TABLE>
+  <TABLE NAME="et" SOURCE="Ethnicity">
+    <DEPENDENCY TABLE="sy" CLAUSE="et.EthnicityID=sy.EthnicityID" />
+  </TABLE>
+  <TABLE NAME="ca" SOURCE="Campus">
+    <DEPENDENCY TABLE="sy" CLAUSE="ca.CampusID=sy.CampusID" />
+  </TABLE>
+  <TABLE NAME="gr" SOURCE="Grade">
+    <DEPENDENCY TABLE="sy" CLAUSE="gr.GradeID=sy.GradeID" />
+  </TABLE>
+  <TABLE NAME="mothersc" SOURCE="StudentContact">
+    <DEPENDENCY TABLE="s" CLAUSE="mothersc.SSN=s.SSN" WHERE-CLAUSE="mothersc.Relationship='Mother'" />
+  </TABLE>
+  <TABLE NAME="fathersc" SOURCE="StudentContact">
+    <DEPENDENCY TABLE="s" CLAUSE="fathersc.SSN=s.SSN" WHERE-CLAUSE="fathersc.Relationship='Father'" />
+  </TABLE>
+  <TABLE NAME="mother" SOURCE="Person">
+    <DEPENDENCY TABLE="mothersc" CLAUSE="mother.PersonID=mothersc.PersonID" />
+  </TABLE>
+  <TABLE NAME="father" SOURCE="Person">
+    <DEPENDENCY TABLE="fathersc" CLAUSE="father.PersonID=fathersc.PersonID" />
+  </TABLE>
+  <TABLE NAME="d1" SOURCE="Disability">
+    <DEPENDENCY TABLE="sy" CLAUSE="sy.PrimaryDisabilityID=d1.DisabilityID" />
+  </TABLE>
+  <TABLE NAME="d2" SOURCE="Disability">
+    <DEPENDENCY TABLE="sy" CLAUSE="sy.SecondaryDisabilityID=d2.DisabilityID" />
+  </TABLE>
+  <TABLE NAME="d3" SOURCE="Disability">
+    <DEPENDENCY TABLE="sy" CLAUSE="sy.TertiaryDisabilityID=d3.DisabilityID" />
+  </TABLE>
+  <TABLE NAME="eval" SOURCE="Evaluation">
+    <DEPENDENCY TABLE="sy" CLAUSE="eval.SSN=sy.SSN AND eval.SchoolYearID=sy.SchoolYearID" />
+  </TABLE>
+  <TABLE NAME="evaltype" SOURCE="EvaluationType">
+    <DEPENDENCY TABLE="eval" CLAUSE="evaltype.EvaluationTypeID=eval.EvaluationTypeID" />
+  </TABLE>
+  <TABLE NAME="evalelig" SOURCE="EvaluationEligible">
+    <DEPENDENCY TABLE="eval" CLAUSE="evalelig.EvaluationEligibleID=eval.EvaluationEligibleID" />
+  </TABLE>
+  <TABLE NAME="isetting" SOURCE="InstructionalSetting">
+    <DEPENDENCY TABLE="sy" CLAUSE="isetting.InstructionalSettingID=sy.InstructionalSettingID" />
+  </TABLE>
+  <TABLE NAME="ins" SOURCE="InstructionalService">
+    <DEPENDENCY TABLE="sy" CLAUSE="ins.SSN=sy.SSN, ins.SchoolYearID=sy.SchoolYearID" />
+  </TABLE>
+  <TABLE NAME="rel" SOURCE="RelatedService">
+    <DEPENDENCY TABLE="sy" CLAUSE="rel.SSN=sy.SSN, rel.SchoolYearID=sy.SchoolYearID" />
+  </TABLE>
+  <TABLE NAME="esy" SOURCE="ESYService">
+    <DEPENDENCY TABLE="sy" CLAUSE="esy.SSN=sy.SSN, isy.SchoolYearID=sy.SchoolYearID" />
+  </TABLE>
+  <TABLE NAME="iservice" SOURCE="InstructionalServiceType">
+    <DEPENDENCY TABLE="ins" CLAUSE="iservice.InstructionalServiceTypeID=ins.InstructionalServiceTypeID" />
+  </TABLE>
+  <TABLE NAME="rservice" SOURCE="RelatedServiceType">
+    <DEPENDENCY TABLE="rel" CLAUSE="rservice.RelatedServiceTypeID=rel.RelatedServiceTypeID" />
+  </TABLE>
+  <TABLE NAME="eservice" SOURCE="ESYServiceType">
+    <DEPENDENCY TABLE="esy" CLAUSE="eservice.ESYServiceTypeID=esy.ESYServiceTypeID" />
+  </TABLE>
+  <TABLE NAME="instype" SOURCE="ServiceType">
+    <DEPENDENCY TABLE="ins" CLAUSE="instype.ServiceTypeID=ins.ServiceTypeID" />
+  </TABLE>
+  <TABLE NAME="reltype" SOURCE="ServiceType">
+    <DEPENDENCY TABLE="rel" CLAUSE="reltype.ServiceTypeID=rel.ServiceTypeID" />
+  </TABLE>
+  <TABLE NAME="esytype" SOURCE="ServiceType">
+    <DEPENDENCY TABLE="esy" CLAUSE="esytype.ServiceTypeID=esy.ServiceTypeID" />
+  </TABLE>
+  <TABLE NAME="a0" SOURCE="StudentAssessmentRecord">
+    <DEPENDENCY TABLE="sy" CLAUSE="a0.AssessmentID=sy.K2ReadingAssessmentRecordID" />
+  </TABLE>
+  <TABLE NAME="a1" SOURCE="Assessment">
+    <DEPENDENCY TABLE="sy" CLAUSE="a1.AssessmentID=sy.ReadingAssessment" />
+  </TABLE>
+  <TABLE NAME="a2" SOURCE="Assessment">
+    <DEPENDENCY TABLE="sy" CLAUSE="a2.AssessmentID=sy.MathAssessment" />
+  </TABLE>
+  <TABLE NAME="a3" SOURCE="Assessment">
+    <DEPENDENCY TABLE="sy" CLAUSE="a3.AssessmentID=sy.WritingAssessment" />
+  </TABLE>
+  <TABLE NAME="a4" SOURCE="Assessment">
+    <DEPENDENCY TABLE="sy" CLAUSE="a4.AssessmentID=sy.SocialStudiesAssessment" />
+  </TABLE>
+  <TABLE NAME="a5" SOURCE="Assessment">
+    <DEPENDENCY TABLE="sy" CLAUSE="a5.AssessmentID=sy.ScienceAssessment" />
+  </TABLE>
+  <TABLE NAME="a6" SOURCE="Assessment">
+    <DEPENDENCY TABLE="sy" CLAUSE="a6.AssessmentID=sy.AlgebraIAssessment" />
+  </TABLE>
+  <TABLE NAME="a7" SOURCE="Assessment">
+    <DEPENDENCY TABLE="sy" CLAUSE="a7.AssessmentID=sy.BiologyAssessment" />
+  </TABLE>
+  <TABLE NAME="a8" SOURCE="Assessment">
+    <DEPENDENCY TABLE="sy" CLAUSE="a8.AssessmentID=sy.EnglishIIAssessment" />
+  </TABLE>
+  <TABLE NAME="a9" SOURCE="Assessment">
+    <DEPENDENCY TABLE="sy" CLAUSE="a9.AssessmentID=sy.USHistoryAssessment" />
+  </TABLE>
+  <TABLE NAME="ser" SOURCE="StudentEvaluationRequest">
+    <DEPENDENCY TABLE="sy" CLAUSE="ser.SSN=sy.SSN AND ser.SchoolYearID=sy.SchoolYearID" />
+  </TABLE>
+  <TABLE NAME="er" SOURCE="EvaluationType">
+    <DEPENDENCY TABLE="ser" CLAUSE="er.EvaluationTypeID=ser.EvaluationTypeID" />
+  </TABLE>
+
+  <CATEGORY NAME="FIELDS">
+    <FIELD ID="Last Name" TABLE="p" />
+    <FIELD ID="First Name" TABLE="p" />
+    <FIELD ID="Middle Name" TABLE="p" />
+    <FIELD ID="SSN" TABLE="s" />
+    <FIELD ID="School Year" FIELD="SchoolYearDesc" TABLE="scy" HASLIST="true" />
+    <CATEGORY NAME="Demographics">
+      <FIELD ID="Birth Date" TABLE="sy" />
+      <FIELD ID="Address" TABLE="p" />
+      <FIELD ID="City" TABLE="p" HASLIST="true" />
+      <FIELD ID="State" TABLE="p" HASLIST="true" />
+      <FIELD ID="Zip Code" TABLE="p" HASLIST="true" />
+      <FIELD ID="Home Phone" TABLE="p" />
+      <FIELD ID="Status Date" TABLE="sy" />
+      <FIELD ID="Status" FIELD="StatusDesc" TABLE="st" HASLIST="true" />
+      <FIELD ID="Eligibility" FIELD="EligibilityDesc" TABLE="el" HASLIST="true" />
+      <FIELD ID="Gender" FIELD="GenderDesc" TABLE="ge" HASLIST="true" />
+      <FIELD ID="Ethnicity" FIELD="EthnicityDesc" TABLE="et" HASLIST="true" />
+      <FIELD ID="Campus" FIELD="CampusDesc" TABLE="ca" HASLIST="true" />
+      <FIELD ID="Grade" FIELD="GradeDesc" TABLE="gr" HASLIST="true" />
+      <FIELD ID="Demographics Comments" TABLE="sy" />
+    </CATEGORY>
+    <CATEGORY NAME="Contacts">
+      <CATEGORY NAME="Mother">
+        <FIELD ID="Mother First Name" FIELD="FirstName" TABLE="mother" />
+        <FIELD ID="Mother Last Name" FIELD="LastName" TABLE="mother" />
+        <FIELD ID="Mother Address" FIELD="Address" TABLE="mother" />
+        <FIELD ID="Mother City" FIELD="City" TABLE="mother" HASLIST="true" />
+        <FIELD ID="Mother State" FIELD="State" TABLE="mother" HASLIST="true" />
+        <FIELD ID="Mother Zip Code" FIELD="ZipCode" TABLE="mother" HASLIST="true" />
+        <FIELD ID="Mother Work Phone" FIELD="WorkPhone" TABLE="mother" />
+        <FIELD ID="Mother Home Phone" FIELD="HomePhone" TABLE="mother" />
+        <FIELD ID="Mother Cell Phone" FIELD="CellPhone" TABLE="mother" />
+        <FIELD ID="Mother E-mail Address" FIELD="Email" TABLE="mother" />
+      </CATEGORY>
+      <CATEGORY NAME="Father">
+        <FIELD ID="Father First Name" FIELD="FirstName" TABLE="father" />
+        <FIELD ID="Father Last Name" FIELD="LastName" TABLE="father" />
+        <FIELD ID="Father Address" FIELD="Address" TABLE="father" />
+        <FIELD ID="Father City" FIELD="City" TABLE="father" HASLIST="true" />
+        <FIELD ID="Father State" FIELD="State" TABLE="father" HASLIST="true" />
+        <FIELD ID="Father Zip Code" FIELD="ZipCode" TABLE="father" HASLIST="true" />
+        <FIELD ID="Father Work Phone" FIELD="WorkPhone" TABLE="father" />
+        <FIELD ID="Father Home Phone" FIELD="HomePhone" TABLE="father" />
+        <FIELD ID="Father Cell Phone" FIELD="CellPhone" TABLE="father" />
+        <FIELD ID="Father E-mail Address" FIELD="Email" TABLE="father" />
+      </CATEGORY>
+      <FIELD ID="Contacts Comments" TABLE="sy" />
+    </CATEGORY>
+    <CATEGORY NAME="Evaluations">
+      <FIELD ID="Primary Disability" FIELD="DisabilityDesc" TABLE="d1" HASLIST="true" />
+      <FIELD ID="Secondary Disability" FIELD="DisabilityDesc" TABLE="d2" HASLIST="true" />
+      <FIELD ID="Tertiary Disability" FIELD="DisabilityDesc" TABLE="d3" HASLIST="true" />
+      <FIELD ID="Multiple Disabilities" TABLE="sy" HASLIST="true" />
+      <FIELD ID="Evaluations Comments" TABLE="sy" />
+      <CATEGORY NAME="Evaluations">
+        <FIELD ID="Evaluation Type" FIELD="EvaluationTypeDesc" TABLE="evaltype" HASLIST="true" />
+        <FIELD ID="Evaluation Date" TABLE="eval" />
+        <FIELD ID="Report Date" TABLE="eval" />
+        <FIELD ID="Evaluation Eligible" FIELD="EvaluationEligibleDesc" TABLE="evalelig" HASLIST="true" />
+        <FIELD ID="Dismissal Date" TABLE="eval" />
+      </CATEGORY>
+    </CATEGORY>
+    <CATEGORY NAME="Services">
+      <FIELD ID="Instructional Setting" FIELD="InstructionalSettingDesc" TABLE="isetting" HASLIST="true" />
+      <FIELD ID="Instructional Setting ID" TABLE="sy" HASLIST="true" />
+      <FIELD ID="Last ARD Date" TABLE="sy" />
+      <FIELD ID="Last Annual Review Date" TABLE="sy" />
+      <FIELD ID="ITP Date" TABLE="sy" />
+      <FIELD ID="IEP Start Date" TABLE="sy" />
+      <FIELD ID="BIP Date" TABLE="sy" />
+      <FIELD ID="IEP End Date" TABLE="sy" />
+      <FIELD ID="Medically Fragile" TABLE="sy" HASLIST="true" />
+      <FIELD ID="Services Comments" TABLE="sy" />
+      <CATEGORY NAME="Instructional Services">
+        <FIELD ID="Instructional Service" FIELD="InstructionalServiceTypeDesc" TABLE="iservice" HASLIST="true" />
+        <FIELD ID="Instructional Service Type" FIELD="ServiceTypeDesc" TABLE="instype" HASLIST="true" />
+        <FIELD ID="Instructional Service Time" FIELD="ServiceTime" TABLE="ins" />
+      </CATEGORY>
+      <CATEGORY NAME="Related Services">
+        <FIELD ID="Related Service" FIELD="RelatedServiceTypeDesc" TABLE="rservice" HASLIST="true" />
+        <FIELD ID="Related Service Type" FIELD="ServiceTypeDesc" TABLE="reltype" HASLIST="true" />
+        <FIELD ID="Related Service Time" FIELD="ServiceTime" TABLE="rel" />
+      </CATEGORY>
+      <CATEGORY NAME="ESY Services">
+        <FIELD ID="ESY Service" FIELD="ESYServiceTypeDesc" TABLE="eservice" HASLIST="true" />
+        <FIELD ID="ESY Service Type" FIELD="ServiceTypeDesc" TABLE="esytype" HASLIST="true" />
+        <FIELD ID="ESY Service Time" FIELD="ServiceTime" TABLE="esy" />
+      </CATEGORY>
+    </CATEGORY>
+    <CATEGORY NAME="Assessments">
+      <CATEGORY NAME="State Assessments">
+        <FIELD ID="K-2 Reading Assessment" FIELD="AssessmentDesc" TABLE="a0" HASLIST="true" />
+        <FIELD ID="State Reading Assessment" FIELD="AssessmentDesc" TABLE="a1" HASLIST="true" />
+        <FIELD ID="State Math Assessment" FIELD="AssessmentDesc" TABLE="a2" HASLIST="true" />
+        <FIELD ID="State Writing Assessment" FIELD="AssessmentDesc" TABLE="a3" HASLIST="true" />
+        <FIELD ID="State Science Assessment" FIELD="AssessmentDesc" TABLE="a4" HASLIST="true" />
+        <FIELD ID="State Social Studies Assessment" FIELD="AssessmentDesc" TABLE="a5" HASLIST="true" />
+        <FIELD ID="State English II Assessment" FIELD="AssessmentDesc" TABLE="a6" HASLIST="true" />
+        <FIELD ID="State U.S. History Assessment" FIELD="AssessmentDesc" TABLE="a7" HASLIST="true" />
+        <FIELD ID="State Algebra I Assessment" FIELD="AssessmentDesc" TABLE="a8" HASLIST="true" />
+        <FIELD ID="State Biology Assessment" FIELD="AssessmentDesc" TABLE="a9" HASLIST="true" />
+      </CATEGORY>
+      <CATEGORY NAME="ARD Expectations">
+        <FIELD ID="K-2 Reading Expectation" FIELD="K2ReadingExpectation" TABLE="sy" />
+        <FIELD ID="State Reading Expectation" FIELD="ReadingExpectation" TABLE="sy" />
+        <FIELD ID="State Math Expectation" FIELD="MathExpectation" TABLE="sy" />
+        <FIELD ID="State Writing Expectation" FIELD="WritingExpectation" TABLE="sy" />
+        <FIELD ID="State Science Expectation" FIELD="ScienceExpectation" TABLE="sy" />
+        <FIELD ID="State Social Studies Expectation" FIELD="SocialStudiesExpectation" TABLE="sy" />
+        <FIELD ID="State English II Expectation" FIELD="EnglishIIExpectation" TABLE="sy" />
+        <FIELD ID="State U.S. History Expectation" FIELD="USHistoryExpectation" TABLE="sy" />
+        <FIELD ID="State Algebra I Expectation" FIELD="AlgebraIExpectation" TABLE="sy" />
+        <FIELD ID="State Biology Expectation" FIELD="BiologyExpectation" TABLE="sy" />
+      </CATEGORY>
+      <CATEGORY NAME="State Assessment Level">
+        <FIELD ID="K-2 Reading Level" FIELD="K2ReadingLevel" TABLE="sy" />
+        <FIELD ID="State Reading Level" FIELD="ReadingLevel" TABLE="sy" />
+        <FIELD ID="State Math Level" FIELD="MathLevel" TABLE="sy" />
+        <FIELD ID="State Writing Level" FIELD="WritingLevel" TABLE="sy" />
+        <FIELD ID="State Science Level" FIELD="ScienceLevel" TABLE="sy" />
+        <FIELD ID="State Social Studies Level" FIELD="SocialStudiesLevel" TABLE="sy" />
+        <FIELD ID="State English II Level" FIELD="EnglishIILevel" TABLE="sy" />
+        <FIELD ID="State U.S. History Level" FIELD="USHistoryLevel" TABLE="sy" />
+        <FIELD ID="State Algebra I Level" FIELD="AlgebraILevel" TABLE="sy" />
+        <FIELD ID="State Biology Level" FIELD="BiologyLevel" TABLE="sy" />
+      </CATEGORY>
+      <FIELD ID="Assessments Comments" TABLE="sy" />
+    </CATEGORY>
+    <CATEGORY NAME="Referrals">
+      <FIELD ID="Referral Date" TABLE="sy" />
+      <FIELD ID="Evaluation Completed Date" TABLE="sy" />
+      <FIELD ID="ARD Completed Date" TABLE="sy" />
+      <FIELD ID="Referral Eligible" TABLE="sy" />
+      <FIELD ID="Referral Comments" TABLE="sy" />
+      <FIELD ID="Evaluations Requested" FIELD="EvaluationTypeDesc" TABLE="er" />
+    </CATEGORY>
+  </CATEGORY>
+</DATABASE-SCHEMA>
+
